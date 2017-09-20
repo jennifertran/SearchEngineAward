@@ -41,8 +41,6 @@
 #
 # print r.read()
 
-
-
 # This solution does work but it is slow
 from selenium import webdriver
 import selenium.webdriver
