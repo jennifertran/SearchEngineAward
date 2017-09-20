@@ -9,8 +9,9 @@
     <link rel="stylesheet" type="text/css" href="global.css">
 </head>
 <body>
-    <div>
-        <div class="col-md-6" id="faculty">
+    <div class="row">
+        <div class="col-md-6">
+          <center>
             <p>* Faculty:</p>
                 <select name="faculty" id="faculty">
                 <option value="-1">Choose a faculty/school</option>
@@ -51,8 +52,10 @@
                 <option value="UW">University of Winnipeg</option>
                 <option value="WVET">Western College of Veterinary Medicine</option>
                 </select>
+          </center>
         </div>
         <div class="col-md-6">
+          <center>
             <p>* Type:</p>
             <select name="type" id="type">
             <option value="-1">Choose an Award Type</option>
@@ -65,12 +68,17 @@
             <option value="SCHOL">Scholarship</option>
             <option value="RESEARCH">Undergraduate Research Award</option>
             </select>
+            </center>
         </div>
     </div>
 
     <div id="wrapper"><input type="submit" name="Search" class="recordButton" onclick="return validate()" value="Search"></div>
 
     <!-- Latest compiled and minified JavaScript -->
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="validateInput.js"></script>
 </body>
