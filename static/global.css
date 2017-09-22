@@ -1,0 +1,27 @@
+body {
+
+}
+
+h2 {
+  font-size: 50px;
+}
+
+#faculty {
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+#type-form {
+  padding-left: 20px;
+}
+
+#wrapper {
+  padding-top: 4%;
+  width: 100%;
+  padding-left: 45%;
+}
+
+.container {
+  width: 350px;
+  align-items: center;
+}

@@ -14,8 +14,6 @@ git commit -m "Message"
 git push -u origin master
 ~~~~
 
-## Running the App
-
 # Copyright
 
 All rights reserved.
