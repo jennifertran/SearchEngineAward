@@ -9,14 +9,15 @@ def index():
 
 @app.route('/searchResult',  methods=['GET','POST'])
 def searchResult():
-    # currFaculty = request.form['faculty']
-    # currType = request.form['type']
+    currFaculty = request.form['faculty']
+    currType = request.form['type']
 
-    #stuff = ExtractData.passResult(faculty, type)
 
-    stuff = ExtractData.passResult()
+    stuff = ExtractData.passResult(currFaculty, currType)
 
-    return render_template("searchResult.html", passResult=stuff)
+    #stuff = ExtractData.passResult()
+
+    return render_template("searchResult.html", passResult=stuff, faculty=currFaculty, type=currType)
 
 # Kicks the entire app off in our web server
 # only if this file had run

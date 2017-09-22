@@ -6,13 +6,13 @@ from selenium.webdriver.support.ui import Select
 from bs4 import BeautifulSoup
 
 #driver = webdriver.Chrome()
-def passResult():
+def passResult(faculty,type):
     driver = webdriver.PhantomJS()
 
     driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
 
-    Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text("Faculty of Science")
-    Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Scholarship")
+    Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(faculty)
+    Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text(type)
 
     driver.find_element_by_xpath("//*[@id='Search']").click()
 
