@@ -16,6 +16,18 @@ def passResult(faculty,type):
 
     driver.find_element_by_xpath("//*[@id='Search']").click()
 
-    result = BeautifulSoup(driver.page_source)
+    soup = BeautifulSoup(driver.page_source,"html5lib")
+
+    result = ""
+
+    for award in soup.find_all("div", {"id":"awardInfo"}):
+        result = result + str(award) + '\n'
 
     return result
+
+    #return result.find("form", {"name":"mailMessage"})
+
+
+
+
+
