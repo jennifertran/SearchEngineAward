@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css" href="../static/global.css">
-  <meta charset="UTF-8">
-  <title>Title</title>
+{ % extends "index.html" % }
 
-</head>
-<body>
-  <p>{{faculty}}</p>
-  <p>{{type}}</p>
-  <p>{{passResult}}</p>
-</body>
-</html>
+{ % block content % }
+  <h1>{{faculty}}</h1>
+  <h2>{{type}}</h2>
+
+{ % end block % }

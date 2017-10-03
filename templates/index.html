@@ -6,15 +6,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <title>Search Awards Database</title>
-  <!-- Latest compiled and minified CSS -->
 </head>
 <body>
 
 <div class="container well">
-  <form class="form" action="http://localhost:5000/searchResult" method="post">
+  <form class="form" action="/" method="post">
     <div class="form-group">
-      <label for="faculty">Faculty</label>
+      <label for="faculty">Faculty:</label>
       <select class="form-control" name="faculty" id="faculty">
         <option value="-1">Choose a faculty/school</option>
         <option value="View all faculties">View all faculties</option>
@@ -55,7 +55,7 @@
         <option value="Western College of Veterinary Medicine">Western College of Veterinary Medicine</option>
       </select>
 
-      <div class="form-group type-form">
+      <div class="form-group type-form" style="padding-top: 20px;">
         <label for="faculty">Type:</label>
         <select class="form-control" name="type" id="type">
           <option value="-1">Choose an Award Type</option>
@@ -73,27 +73,13 @@
 
     <input type="submit" name="submit" class="btn btn-danger">
   </form>
+
 </div>
 
+<p>{{faculty}}</p>
+<p>{{type}}</p>
 
-<!--<div class="row">-->
-<!--<div class="col-md-6">-->
-<!--<center>-->
-<!--<p>* Faculty:</p>-->
-<!--<select name="faculty" id="faculty">-->
-
-<!--</select>-->
-<!--</center>-->
-<!--</div>-->
-<!--<div class="col-md-6">-->
-<!--<center>-->
-<!--<p>* Type:</p>-->
-
-<!--</center>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div id="wrapper"><input type="submit" name="Search" class="recordButton" onclick="return validate()" value="Search"></div>-->
+<p>{{dataReturned}}</p>
 
 <!-- Latest compiled and minified JavaScript -->
 <script
