@@ -20,7 +20,7 @@ def passResult(faculty,type):
 
     for award in soup.find_all("div", {"id":"awardInfo"}):
          # result = result + str(award) + '<br>'
-         result = result + award.text
+         result = result + award.text + "AND"
 
     return result
     #return result.find("form", {"name":"mailMessage"})

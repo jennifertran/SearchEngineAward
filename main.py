@@ -20,7 +20,9 @@ def index():
         data = ExtractData.passResult(currFaculty, currType)
         template = jinja_env.get_template('index.html')
 
-        return template.render(dataReturned=data,faculty=currFaculty, type=currType)
+        awards = data.split("AND")
+
+        return template.render(dataReturned=data,faculty=currFaculty, type=currType, awards=awards)
 
     return template.render()
 

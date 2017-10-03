@@ -79,7 +79,14 @@
 <p>{{faculty}}</p>
 <p>{{type}}</p>
 
-<p>{{dataReturned}}</p>
+<div id="searchResultsPage">
+  <form>
+    {% for award in awards %}
+    <p>{{award}}</p>
+    {% endfor %}
+  </form>
+</div>
+
 
 <!-- Latest compiled and minified JavaScript -->
 <script
