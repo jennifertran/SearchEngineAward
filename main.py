@@ -2,6 +2,7 @@ from flask import Flask, request
 import ExtractData
 import os
 import jinja2
+from Award import Award
 
 # Makes a new file system path by joining the location of the current file to
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
@@ -17,12 +18,11 @@ def index():
     if request.method == 'POST':
         currFaculty = request.form['faculty']
         currType = request.form['type']
-        data = ExtractData.passResult(currFaculty, currType)
+        awards = ExtractData.passResult(currFaculty, currType)
         template = jinja_env.get_template('index.html')
+        #for award in awards: award.displayAward()
 
-        awards = data.split("AND")
-
-        return template.render(dataReturned=data,faculty=currFaculty, type=currType, awards=awards)
+        return template.render(faculty=currFaculty, type=currType, awards=awards)
 
     return template.render()
 

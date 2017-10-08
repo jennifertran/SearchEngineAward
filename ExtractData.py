@@ -4,10 +4,11 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from bs4 import BeautifulSoup
+from Award import Award
 
 def passResult(faculty,type):
     driver = webdriver.PhantomJS()
-    result = ""
+    result = []
 
     # Get the original page
     driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
@@ -33,12 +34,19 @@ def passResult(faculty,type):
 def extractAwards(currPage):
     soup = BeautifulSoup(currPage.page_source, "html5lib")
 
-    data = ""
+
+    awards = []
+    type = soup.find(id="award").text.split( )
 
     for award in soup.find_all("div", {"id": "awardInfo"}):
-        data += award.text + "AND"
+        url = "https://wwwapps.cc.umanitoba.ca:8443"+award.find('a').get('href')
+        name = award.find('a').text
+        spanList = award.find_all(id="rightTag")
+        #for span in spanList: print span.text
+        award = Award(url,spanList[0].text,name,type[3],spanList[1].text,spanList[2].text,None,None,None,award.find(id="awardDesc").text.strip())
+        awards.append(award)
 
-    return data
+    return awards
 
 
 
