@@ -1,13 +1,16 @@
 body {
+  margin-top: 35px !important;
+}
 
+#form-width {
+  max-width: 200px;
 }
 
 h2 {
-  font-size: 50px;
+  font-size: 10px;
 }
 
-#faculty {
-  padding-left: 20%;
+#faculty, #keyword {
   padding-right: 20%;
 }
 
@@ -27,4 +30,8 @@ h2 {
 
 .well {
   width: 60%;
+}
+
+#searchResultsPage {
+  padding: 30px;
 }

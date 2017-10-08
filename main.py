@@ -2,6 +2,7 @@ from flask import Flask, request
 import ExtractData
 import os
 import jinja2
+from flask_bower import Bower
 from Award import Award
 
 # Makes a new file system path by joining the location of the current file to
@@ -29,4 +30,4 @@ def index():
 # Kicks the entire app off in our web server
 # only if this file had run
 if __name__ == "__main__":
-    app.run(debug=True)
+    Bower(app.run(debug=True))

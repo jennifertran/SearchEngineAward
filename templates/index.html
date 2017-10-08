@@ -8,58 +8,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <title>Search Awards Database</title>
+
+  <script type="text/javascript" src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/bower_components/moment/min/moment.min.js"></script>
+  <script type="text/javascript" src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript"
+          src="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <link rel="stylesheet"
+        href="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>
 </head>
 <body>
 
 <div class="container well">
   <form class="form" action="/" method="post">
-    <div class="form-group">
-      <label for="faculty">Faculty:</label>
-      <select class="form-control" name="faculty" id="faculty">
-        <option value="-1">Choose a faculty/school</option>
-        <option value="View all faculties">View all faculties</option>
-        <option value="Faculty of Agricultural & Food Sciences">Faculty of Agricultural &amp; Food Sciences</option>
-        <option value="School of Agriculture">School of Agriculture</option>
-        <option value="Faculty of Architecture">Faculty of Architecture</option>
-        <option value="School of Art">School of Art</option>
-        <option value="Faculty of Arts">Faculty of Arts</option>
-        <option value="I.H. Asper School of Business">I.H. Asper School of Business</option>
-        <option value="School of Dental Hygiene">School of Dental Hygiene</option>
-        <option value="College of Dentistry">College of Dentistry</option>
-        <option value="Faculty of Education">Faculty of Education</option>
-        <option value="Faculty of Engineering">Faculty of Engineering</option>
-        <option value="Faculty of Environment, Earth, & Resources">Faculty of Environment, Earth, &amp; Resources</option>
-        <option value="Extended Education">Extended Education</option>
-        <option value="Faculty of Graduate Studies">Faculty of Graduate Studies</option>
-        <option value="Faculty of Human Ecology">Faculty of Human Ecology</option>
-        <option value="Faculty of Kinesiology & Recreation Management">Faculty of Kinesiology &amp; Recreation Management</option>
-        <option value=">Faculty of Law">Faculty of Law</option>
-        <option value="Max Rady College of Medicine">Max Rady College of Medicine</option>
-        <option value="Desautels Faculty of Music">Desautels Faculty of Music</option>
-        <option value="College of Nursing">College of Nursing</option>
-        <option value="College of Pharmacy">College of Pharmacy</option>
-        <option value="College of Rehabilitation Sciences">College of Rehabilitation Sciences</option>
-        <option value="Faculty of Science">Faculty of Science</option>
-        <option value="Faculty of Social Work">Faculty of Social Work</option>
-        <option value="University 1">University 1</option>
-        <option value="English Language Centre">English Language Centre</option>
-        <option value="Post-Graduate Medical Education">Post-Graduate Medical Education</option>
-        <option value="Not specific to faculties/colleges/schools">Not specific to faculties/colleges/schools</option>
-        <option value="International College of Manitoba">International College of Manitoba</option>
-        <option value="Brandon University">Brandon University</option>
-        <option value="College universitaire de Saint-Boniface">College universitaire de Saint-Boniface</option>
-        <option value="St. Andrew's College">St. Andrew's College</option>
-        <option value="St. John's College">St. John's College</option>
-        <option value="St. Paul's College">St. Paul's College</option>
-        <option value="University of Winnipeg">University of Winnipeg</option>
-        <option value="Western College of Veterinary Medicine">Western College of Veterinary Medicine</option>
-      </select>
 
-      <div class="form-group type-form" style="padding-top: 20px;">
-        <label for="faculty">Type:</label>
+    <div class="row">
+      <div class="form-group col-xs-12">
+        <label for="keyword">Keyword:</label>
+        <input id="keyword" class="form-control form-width" type="text" autocapitalize='off' name="Keyword"
+               placeholder="Enter search term here..." disabled/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="faculty">Faculty:</label>
+        <select class="form-control form-width" name="faculty" id="faculty">
+          <option value="-1">Choose a faculty/school</option>
+          <option value="View all faculties">View all faculties</option>
+          <option value="Faculty of Agricultural & Food Sciences">Faculty of Agricultural &amp; Food Sciences
+          </option>
+          <option value="School of Agriculture">School of Agriculture</option>
+          <option value="Faculty of Architecture">Faculty of Architecture</option>
+          <option value="School of Art">School of Art</option>
+          <option value="Faculty of Arts">Faculty of Arts</option>
+          <option value="I.H. Asper School of Business">I.H. Asper School of Business</option>
+          <option value="School of Dental Hygiene">School of Dental Hygiene</option>
+          <option value="College of Dentistry">College of Dentistry</option>
+          <option value="Faculty of Education">Faculty of Education</option>
+          <option value="Faculty of Engineering">Faculty of Engineering</option>
+          <option value="Faculty of Environment, Earth, & Resources">Faculty of Environment, Earth, &amp;
+            Resources
+          </option>
+          <option value="Extended Education">Extended Education</option>
+          <option value="Faculty of Graduate Studies">Faculty of Graduate Studies</option>
+          <option value="Faculty of Human Ecology">Faculty of Human Ecology</option>
+          <option value="Faculty of Kinesiology & Recreation Management">Faculty of Kinesiology &amp; Recreation
+            Management
+          </option>
+          <option value=">Faculty of Law">Faculty of Law</option>
+          <option value="Max Rady College of Medicine">Max Rady College of Medicine</option>
+          <option value="Desautels Faculty of Music">Desautels Faculty of Music</option>
+          <option value="College of Nursing">College of Nursing</option>
+          <option value="College of Pharmacy">College of Pharmacy</option>
+          <option value="College of Rehabilitation Sciences">College of Rehabilitation Sciences</option>
+          <option value="Faculty of Science">Faculty of Science</option>
+          <option value="Faculty of Social Work">Faculty of Social Work</option>
+          <option value="University 1">University 1</option>
+          <option value="English Language Centre">English Language Centre</option>
+          <option value="Post-Graduate Medical Education">Post-Graduate Medical Education</option>
+          <option value="Not specific to faculties/colleges/schools">Not specific to faculties/colleges/schools
+          </option>
+          <option value="International College of Manitoba">International College of Manitoba</option>
+          <option value="Brandon University">Brandon University</option>
+          <option value="College universitaire de Saint-Boniface">College universitaire de Saint-Boniface</option>
+          <option value="St. Andrew's College">St. Andrew's College</option>
+          <option value="St. John's College">St. John's College</option>
+          <option value="St. Paul's College">St. Paul's College</option>
+          <option value="University of Winnipeg">University of Winnipeg</option>
+          <option value="Western College of Veterinary Medicine">Western College of Veterinary Medicine</option>
+        </select>
+      </div>
+
+      <div class="form-group col-xs-6">
+        <label for="type">Type:</label>
         <select class="form-control" name="type" id="type">
           <option value="-1">Choose an Award Type</option>
-          <option value="Agit thletic Award">Agit thletic Award</option>
+          <option value="Athletic Award">Athletic Award</option>
           <option value="Bursary">Bursary</option>
           <option value="Combined Medal and Prize">Combined Medal and Prize</option>
           <option value="Fellowship">Fellowship</option>
@@ -69,33 +94,89 @@
           <option value="Undergraduate Research Award">Undergraduate Research Award</option>
         </select>
       </div>
+
     </div>
 
+    <div class="row">
+      <div class="container">
+        <div class="row">
+          <div class='col-xs-6'>
+            <label for="dueDate">Due Date:</label>
+            <div class="form-group">
+              <div class='input-group date' id='duedate'>
+                <input type='text' class="form-control" disabled/>
+                <span class="input-group-addon">
+<span class="glyphicon glyphicon-calendar"></span>
+</span>
+              </div>
+            </div>
+          </div>
+          <script type="text/javascript">
+            $(document).ready(function () {
+              $('#duedate').datetimepicker({
+                format: 'DD/MM/YYYY'
+              });
+            });
+          </script>
+
+          <div class="form-group col-xs-6">
+            <label for="amount">Amount:</label>
+            <input id="amount" class="form-control form-width" type="number" autocapitalize='off' name="Amount"
+                   placeholder="Enter amount here..." disabled/>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div><label>Advanced Options:</label>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-4">
+          <label class="custom-checkbox">
+            <input type="checkbox" class="custom-control-input" disabled>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Indigenous</span>
+          </label>
+        </div>
+
+        <div class="col-xs-12 col-sm-4">
+          <label class="custom-checkbox">
+            <input type="checkbox" class="custom-control-input" disabled>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Award Renewable</span>
+          </label>
+        </div>
+
+        <div class="col-xs-12 col-sm-4">
+          <label class="custom-checkbox">
+            <input type="checkbox" class="custom-control-input" disabled>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Application Required</span>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <br>
     <input type="submit" name="submit" class="btn btn-danger">
   </form>
 
 </div>
 
-<p>{{faculty}}</p>
-<p>{{type}}</p>
-
 <div id="searchResultsPage">
+  <p>{{faculty}}</p>
+  <p>{{type}}</p>
+
   <form>
     {% for award in awards %}
-    <p>{{award}}</p>
+    <h3><b>{{award.name}}</b></h3>
+    <p>{{award.description}}</p>
     {% endfor %}
   </form>
 </div>
 
-
 <!-- Latest compiled and minified JavaScript -->
-<script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
 <script src="../static/validateInput.js"></script>
 </body>
 

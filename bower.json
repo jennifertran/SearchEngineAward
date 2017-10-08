@@ -1,0 +1,23 @@
+{
+  "name": "searchengineaward",
+  "homepage": "https://github.com/jennifertran/ScienceSearchAward",
+  "authors": [
+    "Jennifer Tran <Jennifer.tran101@gmail.com>"
+  ],
+  "description": "bower settings",
+  "main": "main.py",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "moment": "^2.18.1"
+  }
+}

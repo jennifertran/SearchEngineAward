@@ -34,7 +34,6 @@ def passResult(faculty,type):
 def extractAwards(currPage):
     soup = BeautifulSoup(currPage.page_source, "html5lib")
 
-
     awards = []
     type = soup.find(id="award").text.split( )
 
