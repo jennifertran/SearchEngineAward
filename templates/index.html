@@ -170,7 +170,7 @@
 
   <form>
     {% for award in awards %}
-    <h3><b>{{award.name}}</b></h3>
+    <h4><b><a href="{{award.url}}" target="_blank">{{award.name}}</a></b></h4>
     <p>{{award.description}}</p>
     {% endfor %}
   </form>
