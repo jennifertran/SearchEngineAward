@@ -21,7 +21,6 @@ def index():
         currType = request.form['type']
         awards = ExtractData.passResult(currFaculty, currType)
         template = jinja_env.get_template('index.html')
-        #for award in awards: award.displayAward()
 
         return template.render(faculty=currFaculty, type=currType, awards=awards)
 

@@ -14,10 +14,20 @@ def passResult(faculty,type):
     driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
 
     # Inital Selection
-    Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(faculty)
-    Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text(type)
-    Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
+    if type == 'Entrance Bursary':
+        Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
+        Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(faculty)
+        Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Bursary")
+    elif type == 'Entrance Scholarship':
+        Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
+        Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(faculty)
+        Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Scholarship")
+    else:
+        Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(faculty)
+        Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text(type)
 
+
+    Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
     driver.find_element_by_xpath("//*[@id='Search']").click()
 
     result += extractAwards(driver)
