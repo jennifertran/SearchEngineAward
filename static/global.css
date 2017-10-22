@@ -27,11 +27,3 @@ h2 {
 .container {
   align-items: center;
 }
-
-.well {
-  width: 60%;
-}
-
-#searchResultsPage {
-  padding: 30px;
-}

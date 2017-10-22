@@ -19,6 +19,13 @@
 </head>
 <body>
 
+{% if error %}
+<div class="container alert alert-danger error">
+  <strong>Error:</strong> {{ error }}
+</div>
+{% endif %}
+
+<!-- Form Options -->
 <div class="container well">
   <form class="form" action="/" method="post">
 
@@ -166,7 +173,7 @@
 
 </div>
 
-<div id="searchResultsPage">
+<div class="container" id="searchResultsPage">
   <p>{{faculty}}</p>
   <p>{{type}}</p>
 
@@ -178,8 +185,6 @@
   </form>
 </div>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="../static/validateInput.js"></script>
 </body>
 
 </html>
