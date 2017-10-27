@@ -16,7 +16,7 @@ class Award:
         Award.count += 1
 
     def displayCount(self):
-        print "There are totally %d awards" % Award.count
+        return "There are totally %d awards" % Award.count
 
     def displayAward(self):
-        print "Award Number: ",self.number,", Name: ",self.name,", Type: ",self.type,", Application: ",self.application,", Restrictions: ",self.restrictions,", Renewable: ",self.renewable,", Value: ",self.value,", Due Day: ",self.due,", description: ",self.description,", URL: ",self.url
+        return "Award Number: ",self.number,", Name: ",self.name,", Type: ",self.type,", Application: ",self.application,", Restrictions: ",self.restrictions,", Renewable: ",self.renewable,", Value: ",self.value,", Due Day: ",self.due,", description: ",self.description,", URL: ",self.url

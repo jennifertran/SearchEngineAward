@@ -22,6 +22,8 @@ def index():
     if request.method == 'POST':
         currFaculty = request.form['faculty']
         currType = request.form['type']
+        currKeyword = request.form['keyword']
+        # currKeyword = ""
 
         if currFaculty == '-1':
             errorMsg += "Please choose faculty, "
@@ -36,7 +38,7 @@ def index():
             error += errorMsg[:-2]
 
         if error is None:
-            awards = ExtractData.passResult(currFaculty, currType)
+            awards = ExtractData.passResult(currFaculty, currType, currKeyword)
             return template.render(faculty=currFaculty, type=currType, awards=awards)
         else:
             return template.render(error=error)
