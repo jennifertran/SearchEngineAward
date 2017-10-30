@@ -19,6 +19,9 @@
 </head>
 <body>
 
+<h1>U of Manitoba Awards Database</h1>
+<br>
+
 {% if error %}
 <div class="container alert alert-danger error">
   <strong>Error:</strong> {{ error }}
@@ -172,11 +175,13 @@
   </form>
 
 </div>
+<br>
+
+<div class="container well" id="searchBox">
+  <b><p>{{searchMsg}}</p></b>
+</div>
 
 <div class="container" id="searchResultsPage">
-  <p>{{faculty}}</p>
-  <p>{{type}}</p>
-
   <form>
     {% for award in awards %}
     <h4><b><a href="{{award.url}}" target="_blank">{{award.name}}</a></b></h4>

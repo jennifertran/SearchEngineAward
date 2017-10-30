@@ -18,12 +18,17 @@ def index():
     template = jinja_env.get_template('index.html')
     error = None
     errorMsg = ""
+    resultMsg = "You have selected: "
 
     if request.method == 'POST':
         currFaculty = request.form['faculty']
         currType = request.form['type']
         currKeyword = request.form['keyword']
-        # currKeyword = ""
+
+        resultMsg += currFaculty + ", " + currType
+
+        if currKeyword != "":
+            resultMsg += ", " + currKeyword
 
         if currFaculty == '-1':
             errorMsg += "Please choose faculty, "
@@ -39,7 +44,7 @@ def index():
 
         if error is None:
             awards = ExtractData.passResult(currFaculty, currType, currKeyword)
-            return template.render(faculty=currFaculty, type=currType, awards=awards)
+            return template.render(awards=awards, searchMsg=resultMsg)
         else:
             return template.render(error=error)
 

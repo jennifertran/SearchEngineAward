@@ -6,8 +6,16 @@ body {
   max-width: 200px;
 }
 
+h1 {
+  text-align: center;
+}
+
 h2 {
   font-size: 10px;
+}
+
+#searchBox {
+  padding-bottom: 10px;
 }
 
 #faculty, #keyword {
