@@ -5,6 +5,7 @@
   <link rel="stylesheet" type="text/css" href="../static/global.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <title>Search Awards Database</title>
@@ -16,7 +17,8 @@
           src="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
   <link rel="stylesheet"
         href="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>
-  <script type="text/javascript" src="../static/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript"
+          src="../static/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 </head>
 <body>
 
@@ -42,11 +44,11 @@
       </div>
     </div>
 
-     <!-- Faculty & Type -->
+    <!-- Faculty & Type -->
     <div class="row">
       <div class="form-group col-xs-6">
         <label for="faculty">Faculty:</label>
-        <select class="form-control form-width" name="faculty" id="faculty">
+        <select class="selectpicker form-control form-width" data-live-search="true"  name="faculty" id="faculty">
           <option value="-1">Choose a faculty/school</option>
           <option value="View all faculties">View all faculties</option>
           <option value="Faculty of Agricultural & Food Sciences">Faculty of Agricultural &amp; Food Sciences
@@ -95,7 +97,7 @@
 
       <div class="form-group col-xs-6">
         <label for="type">Type:</label>
-        <select class="form-control" name="type" id="type">
+        <select class="selectpicker form-control form-width" data-live-search="true" name="type" id="type">
           <option value="-1">Choose an Award Type</option>
           <option value="Athletic Award">Athletic Award</option>
           <option value="Entrance Bursary">Entrance Bursary</option>
