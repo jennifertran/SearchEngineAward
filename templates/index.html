@@ -16,6 +16,7 @@
           src="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
   <link rel="stylesheet"
         href="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>
+  <script type="text/javascript" src="../static/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 </head>
 <body>
 
@@ -32,6 +33,7 @@
 <div class="container well">
   <form class="form" action="/" method="post">
 
+    <!-- Keyword -->
     <div class="row">
       <div class="form-group col-xs-12">
         <label for="keyword">Keyword:</label>
@@ -40,6 +42,7 @@
       </div>
     </div>
 
+     <!-- Faculty & Type -->
     <div class="row">
       <div class="form-group col-xs-6">
         <label for="faculty">Faculty:</label>
@@ -109,6 +112,7 @@
 
     </div>
 
+    <!-- Due Date & Amount -->
     <div class="row">
       <div class="container">
         <div class="row">
@@ -177,9 +181,11 @@
 </div>
 <br>
 
+{% if searchMsg %}
 <div class="container well" id="searchBox">
   <b><p>{{searchMsg}}</p></b>
 </div>
+{% endif %}
 
 <div class="container" id="searchResultsPage">
   <form>

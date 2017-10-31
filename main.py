@@ -48,7 +48,7 @@ def index():
         else:
             return template.render(error=error)
 
-    return template.render()
+    return template.render(searchMsg=None)
 
 # Kicks the entire app off in our web server
 # only if this file had run
