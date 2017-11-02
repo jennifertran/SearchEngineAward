@@ -18,22 +18,38 @@ def index():
     template = jinja_env.get_template('index.html')
     error = None
     errorMsg = ""
+    allFaculty = ""
+    allType = ""
     resultMsg = "You have selected: "
 
     if request.method == 'POST':
-        currFaculty = request.form['faculty']
-        currType = request.form['type']
+
+        # Both get lists returns an array
+        currFaculty = request.form.getlist('faculty')
+        currType = request.form.getlist('type')
         currKeyword = request.form['keyword']
 
-        resultMsg += currFaculty + ", " + currType
+        # Iterate through the list
+        for x in currFaculty:
+            allFaculty += x + ", "
+
+        allFaculty = allFaculty[:-2]
+
+        for y in currType:
+            allType += y + ", "
+
+        allType = allType[:-2]
+
+        resultMsg += allFaculty + ", " + allType
 
         if currKeyword != "":
             resultMsg += ", " + currKeyword
 
-        if currFaculty == '-1':
+        # Check if it contains the -1 value
+        if '-1' in allFaculty:
             errorMsg += "Please choose faculty, "
 
-        if currType == '-1':
+        if '-1' in allType:
             errorMsg += "Please choose award type, "
 
         if errorMsg != "":
@@ -43,8 +59,9 @@ def index():
             error += errorMsg[:-2]
 
         if error is None:
-            awards = ExtractData.passResult(currFaculty, currType, currKeyword)
-            return template.render(awards=awards, searchMsg=resultMsg)
+            #awards = ExtractData.passResult(allFaculty, allType, currKeyword)
+            #return template.render(awards=awards,searchMsg=resultMsg)
+            return template.render(searchMsg=resultMsg)
         else:
             return template.render(error=error)
 
