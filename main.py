@@ -59,9 +59,8 @@ def index():
             error += errorMsg[:-2]
 
         if error is None:
-            #awards = ExtractData.passResult(allFaculty, allType, currKeyword)
-            #return template.render(awards=awards,searchMsg=resultMsg)
-            return template.render(searchMsg=resultMsg)
+            awards = ExtractData.passResult(currFaculty, currType, currKeyword)
+            return template.render(awards=awards,searchMsg=resultMsg)
         else:
             return template.render(error=error)
 
