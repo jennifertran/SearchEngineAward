@@ -6,6 +6,8 @@ from selenium.common.exceptions import NoSuchElementException
 from bs4 import BeautifulSoup
 from Award import Award
 
+counter = 0
+
 def passResult(faculty,type,keyword):
     driver = webdriver.PhantomJS()
     result = []
@@ -115,14 +117,16 @@ def extractAwards(currPage,keyword):
     result = []  # Contains keyword related result
     keywords = [] # Collection of keyword
 
+
     type = soup.find(id="award").text.split( )
 
     for award in soup.find_all("div", {"id": "awardInfo"}):
         url = "https://wwwapps.cc.umanitoba.ca:8443"+award.find('a').get('href')
         name = award.find('a').text
         spanList = award.find_all(id="rightTag")
-        #for span in spanList: print span.text
-        award = Award(url, spanList[0].text, name, type[3], spanList[1].text, spanList[2].text, None, None, None,award.find(id="awardDesc").text.strip()[:-1][1:])
+        global counter
+        counter += 1
+        award = Award(url, spanList[0].text, name, type[3], spanList[1].text, spanList[2].text, None, None, None,award.find(id="awardDesc").text.strip()[:-1][1:], counter)
         awards.append(award)
 
 

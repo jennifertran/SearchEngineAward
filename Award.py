@@ -2,7 +2,7 @@
 class Award:
     count = 0
 
-    def __init__(self, url, number, name, type, application, restrictions, renewable, value, due, description):
+    def __init__(self, url, number, name, type, application, restrictions, renewable, value, due, description, sequence):
         self.url = url
         self.number = number
         self.name = name
@@ -13,6 +13,7 @@ class Award:
         self.value = value
         self.due = due
         self.description = description
+        self.sequence = sequence
         Award.count += 1
 
     def displayCount(self):
