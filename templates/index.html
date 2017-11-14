@@ -54,9 +54,7 @@
     <div class="row">
       <div class="form-group col-xs-6">
         <label for="faculty">Faculty:</label>
-        <select class="selectpicker form-control form-width" multiple data-selected-text-format="count"
-                data-live-search="true" data-size="8" data-max-options="3" name="faculty" id="faculty">
-          <option value="-1" selected>Choose a faculty/school</option>
+        <select class="selectpicker form-control form-width" multiple data-selected-text-format="count > 2" data-live-search="true" data-size="8" data-max-options="3" name="faculty[]" id="faculty" title="Choose a faculty/school">
           <option value="View all faculties">View all faculties</option>
           <option value="Faculty of Agricultural & Food Sciences">Faculty of Agricultural &amp; Food Sciences
           </option>
@@ -104,9 +102,8 @@
 
       <div class="form-group col-xs-6">
         <label for="type">Type:</label>
-        <select class="selectpicker form-control form-width" multiple data-selected-text-format="count"
-                data-live-search="true" data-max-options="3" name="type" id="type">
-          <option value="-1" selected>Choose an Award Type</option>
+        <select class="selectpicker form-control form-width" multiple data-selected-text-format="count > 2"
+                data-live-search="true" data-max-options="3" name="type[]" id="type" title="Choose an Award Type">
           <option value="View all types">View all types</option>
           <option value="Athletic Award">Athletic Award</option>
           <option value="Entrance Bursary">Entrance Bursary</option>

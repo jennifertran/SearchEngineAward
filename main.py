@@ -28,32 +28,32 @@ def index():
     if request.method == 'POST':
 
         # Both get lists returns an array
-        currFaculty = request.form.getlist('faculty')
-        currType = request.form.getlist('type')
+        currFaculty = request.form.getlist('faculty[]')
+        currType = request.form.getlist('type[]')
         currKeyword = request.form['keyword']
 
-        # Iterate through the list
-        for x in currFaculty:
-            allFaculty += x + ", "
+        # Checks if the array is not empty
+        if currFaculty:
+            # Iterate through the list
+            for x in currFaculty:
+                allFaculty += x + ", "
 
-        allFaculty = allFaculty[:-2]
+            allFaculty = allFaculty[:-2]
+        else:
+            errorMsg += "Please choose faculty, "
 
-        for y in currType:
-            allType += y + ", "
+        if currType:
+            for y in currType:
+                allType += y + ", "
 
-        allType = allType[:-2]
+            allType = allType[:-2]
+        else:
+            errorMsg += "Please choose award type, "
 
         resultMsg += allFaculty + ", " + allType
 
         if currKeyword != "":
             resultMsg += ", " + currKeyword
-
-        # Check if it contains the -1 value
-        if '-1' in allFaculty:
-            errorMsg += "Please choose faculty, "
-
-        if '-1' in allType:
-            errorMsg += "Please choose award type, "
 
         if errorMsg != "":
             error = ""
