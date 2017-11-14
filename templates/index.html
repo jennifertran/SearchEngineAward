@@ -2,29 +2,35 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" type="text/css" href="../static/global.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="../static/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <title>Search Awards Database</title>
 
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="../static/global.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
+  <link rel="stylesheet"
+        href="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>
+
+  <!-- JavaScript -->
   <script type="text/javascript" src="../static/bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="../static/bower_components/moment/min/moment.min.js"></script>
   <script type="text/javascript" src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript"
           src="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-  <link rel="stylesheet"
-        href="../static/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>
   <script type="text/javascript"
           src="../static/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 </head>
 <body>
 
+<!-- Title -->
 <h1>U of Manitoba Awards Database</h1>
 <br>
 
+
+<!-- Form Error Message -->
 {% if error %}
 <div class="container alert alert-danger error">
   <strong>Error:</strong> {{ error }}
@@ -48,7 +54,8 @@
     <div class="row">
       <div class="form-group col-xs-6">
         <label for="faculty">Faculty:</label>
-        <select class="selectpicker form-control form-width" multiple data-selected-text-format="count" data-live-search="true" data-size="8" data-max-options="3" name="faculty" id="faculty">
+        <select class="selectpicker form-control form-width" multiple data-selected-text-format="count"
+                data-live-search="true" data-size="8" data-max-options="3" name="faculty" id="faculty">
           <option value="-1" selected>Choose a faculty/school</option>
           <option value="View all faculties">View all faculties</option>
           <option value="Faculty of Agricultural & Food Sciences">Faculty of Agricultural &amp; Food Sciences
@@ -97,7 +104,8 @@
 
       <div class="form-group col-xs-6">
         <label for="type">Type:</label>
-        <select class="selectpicker form-control form-width" multiple data-selected-text-format="count" data-live-search="true" data-max-options="3" name="type" id="type">
+        <select class="selectpicker form-control form-width" multiple data-selected-text-format="count"
+                data-live-search="true" data-max-options="3" name="type" id="type">
           <option value="-1" selected>Choose an Award Type</option>
           <option value="View all types">View all types</option>
           <option value="Athletic Award">Athletic Award</option>
@@ -184,19 +192,22 @@
 </div>
 <br>
 
+<!-- Search Results -->
 {% if searchMsg %}
 <div class="container well" id="searchBox">
   <b><p>{{searchMsg}}</p></b>
+  <b><p>Total awards found: {{awardCount}}</p></b>
 </div>
 {% endif %}
 
 <div class="container" id="searchResultsPage">
-  <form>
-    {% for award in awards %}
-    <h4><b><a>{{award.sequence}}. </a><a href="{{award.url}}" target="_blank">{{award.name}}</a></b></h4>
-    <p>{{award.description}}</p>
-    {% endfor %}
-  </form>
+  {% for award in awards %}
+  <div>
+    <h4><b>{{award.sequence}}. <a href="{{award.url}}" target="_blank">{{award.name}}</a></b></h4>
+    <p><b>Description:</b> {{award.description}}</p>
+  </div>
+  <br>
+  {% endfor %}
 </div>
 
 </body>

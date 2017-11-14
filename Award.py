@@ -2,7 +2,8 @@
 class Award:
     count = 0
 
-    def __init__(self, url, number, name, type, application, restrictions, renewable, value, due, description, sequence):
+    def __init__(self, url, number, name, type, application, restrictions, renewable, value, due, description,
+                 sequence):
         self.url = url
         self.number = number
         self.name = name
@@ -17,7 +18,7 @@ class Award:
         Award.count += 1
 
     def displayCount(self):
-        return "There are totally %d awards" % Award.count
+        return "There are a total of %d awards" % Award.count
 
     def displayAward(self):
-        return "Award Number: ",self.number,", Name: ",self.name,", Type: ",self.type,", Application: ",self.application,", Restrictions: ",self.restrictions,", Renewable: ",self.renewable,", Value: ",self.value,", Due Day: ",self.due,", description: ",self.description,", URL: ",self.url
+        return "Award Number: ", self.number, ", Name: ", self.name, ", Type: ", self.type, ", Application: ", self.application, ", Restrictions: ", self.restrictions, ", Renewable: ", self.renewable, ", Value: ", self.value, ", Due Day: ", self.due, ", description: ", self.description, ", URL: ", self.url
