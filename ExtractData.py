@@ -131,10 +131,13 @@ def extractAwards(currPage, keyword):
                       award.find(id="awardDesc").text.strip()[:-1][1:], counter)
         awards.append(award)
 
+
     if keyword:
         # try to split string based on logical conjunction
         # if find logical conjunction AND
+
         if keyword.find("AND") != -1:
+            counter = 0  # recount awards if search for keyword(s)
             keywords = keyword.split("AND")
             for award in awards:
                 isFound = True
@@ -143,22 +146,30 @@ def extractAwards(currPage, keyword):
                     if awardInfo.find(currKeyword.strip()) == -1:
                         isFound = False
                 if (isFound == True):
+                    counter += 1
+                    award.sequence = counter
                     result.append(award)
             return result
         # if find logical conjunction OR
         elif keyword.find("OR") != -1:
+            counter = 0  # recount awards if search for keyword(s)
             keywords = keyword.split("OR")
             for award in awards:
                 awardInfo = str(award.displayAward())
                 for currKeyword in keywords:
                     if awardInfo.find(currKeyword.strip()) != -1:
+                        counter += 1
+                        award.sequence = counter
                         result.append(award)
             return result
         # no logic conjunction is found, only single keyword
         else:
+            counter = 0  # recount awards if search for keyword(s)
             for award in awards:
                 awardInfo = str(award.displayAward())
                 if awardInfo.find(keyword) != -1:
+                    counter += 1
+                    award.sequence = counter
                     result.append(award)
             return result
     else:
