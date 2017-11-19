@@ -456,6 +456,8 @@ def extractAwards(currPage, keyword):
     awards = []
     result = []  # Contains keyword related result
     keywords = []  # Collection of keyword
+    global counter
+    global isCleared
 
     type = soup.find(id="award").text.split()
 
@@ -463,8 +465,8 @@ def extractAwards(currPage, keyword):
         url = "https://wwwapps.cc.umanitoba.ca:8443" + award.find('a').get('href')
         name = award.find('a').text
         spanList = award.find_all(id="rightTag")
-        global counter
-        counter += 1
+        if keyword == "":
+            counter += 1
         award = Award(url, spanList[0].text, name, type[3], spanList[1].text, spanList[2].text, None, None, None,
                       award.find(id="awardDesc").text.strip()[:-1][1:], counter)
         awards.append(award)
@@ -475,7 +477,6 @@ def extractAwards(currPage, keyword):
         # if find logical conjunction AND
 
         if keyword.find("AND") != -1:
-            counter = 0  # recount awards if search for keyword(s)
             keywords = keyword.split("AND")
             for award in awards:
                 isFound = True
@@ -490,7 +491,6 @@ def extractAwards(currPage, keyword):
             return result
         # if find logical conjunction OR
         elif keyword.find("OR") != -1:
-            counter = 0  # recount awards if search for keyword(s)
             keywords = keyword.split("OR")
             for award in awards:
                 awardInfo = str(award.displayAward())
@@ -503,19 +503,19 @@ def extractAwards(currPage, keyword):
             return result
         # no logic conjunction is found, only single keyword
         else:
-            counter = 0  # recount awards if search for keyword(s)
             for award in awards:
                 awardInfo = str(award.displayAward())
                 if awardInfo.find(keyword) != -1:
                     counter += 1
+                    print counter
                     award.sequence = counter
                     result.append(award)
             return result
     else:
         return awards
 
-    # Resets the counter when refreshed
-    counter = 0
-
 def getTotal():
-    return counter
+    global counter
+    temp = counter # Pass counter value to temp
+    counter = 0 # Clear counter after each query
+    return temp
