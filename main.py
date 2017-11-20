@@ -24,6 +24,8 @@ def index():
     allType = ""
     resultMsg = "You have selected: "
     totalAwards = 0
+    containsViewAllFac = None
+    containsViewAllType = None
 
     if request.method == 'POST':
 
@@ -38,17 +40,29 @@ def index():
             for x in currFaculty:
                 allFaculty += x + ", "
 
+                if x == 'View all faculties':
+                    containsViewAllFac = 1
+
             allFaculty = allFaculty[:-2]
         else:
             errorMsg += "Please choose faculty, "
+
+        if containsViewAllFac:
+            currFaculty = ["View all faculties"]
 
         if currType:
             for y in currType:
                 allType += y + ", "
 
+                if x == 'View all faculties':
+                    containsViewAllType = 1
+
             allType = allType[:-2]
         else:
             errorMsg += "Please choose award type, "
+
+        if containsViewAllType:
+            currType = ["View all types"]
 
         resultMsg += allFaculty + ", " + allType
 
