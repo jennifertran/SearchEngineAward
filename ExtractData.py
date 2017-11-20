@@ -9,7 +9,7 @@ from Award import Award
 counter = 0
 
 def passResult(faculty, type, keyword):
-    driver = webdriver.PhantomJS(executable_path='phantomjs.exe')
+    driver = webdriver.PhantomJS()
     result = []
     typeList = ["Athletic Award", "Bursary", "Combined Medal and Prize", "Fellowship", "Medal", "Prize", "Scholarship",
                 "Undergraduate Research Award"]
