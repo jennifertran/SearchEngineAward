@@ -451,7 +451,7 @@ def passResult(faculty, type, keyword):
 
 
 def extractAwards(currPage, keyword):
-    soup = BeautifulSoup(currPage.page_source, "html5lib")
+    soup = BeautifulSoup(currPage.page_source, "html.parser")
 
     awards = []
     result = []  # Contains keyword related result
