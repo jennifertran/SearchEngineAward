@@ -507,7 +507,6 @@ def extractAwards(currPage, keyword):
                 awardInfo = str(award.displayAward())
                 if awardInfo.find(keyword) != -1:
                     counter += 1
-                    print counter
                     award.sequence = counter
                     result.append(award)
             return result

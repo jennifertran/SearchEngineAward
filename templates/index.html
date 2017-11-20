@@ -25,187 +25,199 @@
 </head>
 <body>
 
-<!-- Title -->
-<h1>U of Manitoba Awards Database</h1>
-<br>
+<!-- Shows loading animation -->
+<div id="loading" style="display: none"></div>
+<div id="content">
+  <!-- Title -->
+  <h1>U of Manitoba Awards Database</h1>
+  <br>
 
+  <!-- Form Error Message -->
+  {% if error %}
+  <div class="container alert alert-danger error">
+    <strong>Error:</strong> {{ error }}
+  </div>
+  {% endif %}
 
-<!-- Form Error Message -->
-{% if error %}
-<div class="container alert alert-danger error">
-  <strong>Error:</strong> {{ error }}
-</div>
-{% endif %}
+  <!-- Form Options -->
+  <div class="container well">
+    <form class="form" action="/" method="post">
 
-<!-- Form Options -->
-<div class="container well">
-  <form class="form" action="/" method="post">
-
-    <!-- Keyword -->
-    <div class="row">
-      <div class="form-group col-xs-12">
-        <label for="keyword">Keyword:</label>
-        <input id="keyword" class="form-control form-width" type="text" autocapitalize='off' name="keyword"
-               placeholder="Enter search term here..."/>
-      </div>
-    </div>
-
-    <!-- Faculty & Type -->
-    <div class="row">
-      <div class="form-group col-xs-6">
-        <label for="faculty">Faculty:</label>
-        <select class="selectpicker form-control form-width" multiple data-selected-text-format="count > 2" data-live-search="true" data-size="8" data-max-options="3" name="faculty[]" id="faculty" title="Choose a faculty/school">
-          <option value="View all faculties">View all faculties</option>
-          <option value="Faculty of Agricultural & Food Sciences">Faculty of Agricultural &amp; Food Sciences
-          </option>
-          <option value="School of Agriculture">School of Agriculture</option>
-          <option value="Faculty of Architecture">Faculty of Architecture</option>
-          <option value="School of Art">School of Art</option>
-          <option value="Faculty of Arts">Faculty of Arts</option>
-          <option value="I.H. Asper School of Business">I.H. Asper School of Business</option>
-          <option value="School of Dental Hygiene">School of Dental Hygiene</option>
-          <option value="College of Dentistry">College of Dentistry</option>
-          <option value="Faculty of Education">Faculty of Education</option>
-          <option value="Faculty of Engineering">Faculty of Engineering</option>
-          <option value="Faculty of Environment, Earth, & Resources">Faculty of Environment, Earth, &amp;
-            Resources
-          </option>
-          <option value="Extended Education">Extended Education</option>
-          <option value="Faculty of Graduate Studies">Faculty of Graduate Studies</option>
-          <option value="Faculty of Human Ecology">Faculty of Human Ecology</option>
-          <option value="Faculty of Kinesiology & Recreation Management">Faculty of Kinesiology &amp; Recreation
-            Management
-          </option>
-          <option value="Faculty of Law">Faculty of Law</option>
-          <option value="Max Rady College of Medicine">Max Rady College of Medicine</option>
-          <option value="Desautels Faculty of Music">Desautels Faculty of Music</option>
-          <option value="College of Nursing">College of Nursing</option>
-          <option value="College of Pharmacy">College of Pharmacy</option>
-          <option value="College of Rehabilitation Sciences">College of Rehabilitation Sciences</option>
-          <option value="Faculty of Science">Faculty of Science</option>
-          <option value="Faculty of Social Work">Faculty of Social Work</option>
-          <option value="University 1">University 1</option>
-          <option value="English Language Centre">English Language Centre</option>
-          <option value="Post-Graduate Medical Education">Post-Graduate Medical Education</option>
-          <option value="Not specific to faculties/colleges/schools">Not specific to faculties/colleges/schools
-          </option>
-          <option value="International College of Manitoba">International College of Manitoba</option>
-          <option value="Brandon University">Brandon University</option>
-          <option value="College universitaire de Saint-Boniface">College universitaire de Saint-Boniface</option>
-          <option value="St. Andrew's College">St. Andrew's College</option>
-          <option value="St. John's College">St. John's College</option>
-          <option value="St. Paul's College">St. Paul's College</option>
-          <option value="University of Winnipeg">University of Winnipeg</option>
-          <option value="Western College of Veterinary Medicine">Western College of Veterinary Medicine</option>
-        </select>
+      <!-- Keyword -->
+      <div class="row">
+        <div class="form-group col-xs-12">
+          <label for="keyword">Keyword:</label>
+          <input id="keyword" class="form-control form-width" type="text" autocapitalize='off' name="keyword"
+                 placeholder="Enter search term here..."/>
+        </div>
       </div>
 
-      <div class="form-group col-xs-6">
-        <label for="type">Type:</label>
-        <select class="selectpicker form-control form-width" multiple data-selected-text-format="count > 2"
-                data-live-search="true" data-max-options="3" name="type[]" id="type" title="Choose an Award Type">
-          <option value="View all types">View all types</option>
-          <option value="Athletic Award">Athletic Award</option>
-          <option value="Entrance Bursary">Entrance Bursary</option>
-          <option value="Bursary">Bursary</option>
-          <option value="Combined Medal and Prize">Combined Medal and Prize</option>
-          <option value="Fellowship">Fellowship</option>
-          <option value="Medal">Medal</option>
-          <option value="Prize">Prize</option>
-          <option value="Entrance Scholarship">Entrance Scholarship</option>
-          <option value="Scholarship">Scholarship</option>
-          <option value="Undergraduate Research Award">Undergraduate Research Award</option>
-        </select>
+      <!-- Faculty & Type -->
+      <div class="row">
+        <div class="form-group col-xs-6">
+          <label for="faculty">Faculty:</label>
+          <select class="selectpicker form-control form-width" multiple data-selected-text-format="count > 2"
+                  data-live-search="true" data-size="8" data-max-options="3" name="faculty[]" id="faculty"
+                  title="Choose a faculty/school">
+            <option value="View all faculties">View all faculties</option>
+            <option value="Faculty of Agricultural & Food Sciences">Faculty of Agricultural &amp; Food Sciences
+            </option>
+            <option value="School of Agriculture">School of Agriculture</option>
+            <option value="Faculty of Architecture">Faculty of Architecture</option>
+            <option value="School of Art">School of Art</option>
+            <option value="Faculty of Arts">Faculty of Arts</option>
+            <option value="I.H. Asper School of Business">I.H. Asper School of Business</option>
+            <option value="School of Dental Hygiene">School of Dental Hygiene</option>
+            <option value="College of Dentistry">College of Dentistry</option>
+            <option value="Faculty of Education">Faculty of Education</option>
+            <option value="Faculty of Engineering">Faculty of Engineering</option>
+            <option value="Faculty of Environment, Earth, & Resources">Faculty of Environment, Earth, &amp;
+              Resources
+            </option>
+            <option value="Extended Education">Extended Education</option>
+            <option value="Faculty of Graduate Studies">Faculty of Graduate Studies</option>
+            <option value="Faculty of Human Ecology">Faculty of Human Ecology</option>
+            <option value="Faculty of Kinesiology & Recreation Management">Faculty of Kinesiology &amp; Recreation
+              Management
+            </option>
+            <option value="Faculty of Law">Faculty of Law</option>
+            <option value="Max Rady College of Medicine">Max Rady College of Medicine</option>
+            <option value="Desautels Faculty of Music">Desautels Faculty of Music</option>
+            <option value="College of Nursing">College of Nursing</option>
+            <option value="College of Pharmacy">College of Pharmacy</option>
+            <option value="College of Rehabilitation Sciences">College of Rehabilitation Sciences</option>
+            <option value="Faculty of Science">Faculty of Science</option>
+            <option value="Faculty of Social Work">Faculty of Social Work</option>
+            <option value="University 1">University 1</option>
+            <option value="English Language Centre">English Language Centre</option>
+            <option value="Post-Graduate Medical Education">Post-Graduate Medical Education</option>
+            <option value="Not specific to faculties/colleges/schools">Not specific to faculties/colleges/schools
+            </option>
+            <option value="International College of Manitoba">International College of Manitoba</option>
+            <option value="Brandon University">Brandon University</option>
+            <option value="College universitaire de Saint-Boniface">College universitaire de Saint-Boniface</option>
+            <option value="St. Andrew's College">St. Andrew's College</option>
+            <option value="St. John's College">St. John's College</option>
+            <option value="St. Paul's College">St. Paul's College</option>
+            <option value="University of Winnipeg">University of Winnipeg</option>
+            <option value="Western College of Veterinary Medicine">Western College of Veterinary Medicine</option>
+          </select>
+        </div>
+
+        <div class="form-group col-xs-6">
+          <label for="type">Type:</label>
+          <select class="selectpicker form-control form-width" multiple data-selected-text-format="count > 2"
+                  data-live-search="true" data-max-options="3" name="type[]" id="type" title="Choose an Award Type">
+            <option value="View all types">View all types</option>
+            <option value="Athletic Award">Athletic Award</option>
+            <option value="Entrance Bursary">Entrance Bursary</option>
+            <option value="Bursary">Bursary</option>
+            <option value="Combined Medal and Prize">Combined Medal and Prize</option>
+            <option value="Fellowship">Fellowship</option>
+            <option value="Medal">Medal</option>
+            <option value="Prize">Prize</option>
+            <option value="Entrance Scholarship">Entrance Scholarship</option>
+            <option value="Scholarship">Scholarship</option>
+            <option value="Undergraduate Research Award">Undergraduate Research Award</option>
+          </select>
+        </div>
+
       </div>
 
-    </div>
-
-    <!-- Due Date & Amount -->
-    <div class="row">
-      <div class="container">
-        <div class="row">
-          <div class='col-xs-6'>
-            <label for="dueDate">Due Date:</label>
-            <div class="form-group">
-              <div class='input-group date' id='duedate'>
-                <input type='text' class="form-control" disabled/>
-                <span class="input-group-addon">
+      <!-- Due Date & Amount -->
+      <div class="row">
+        <div class="container">
+          <div class="row">
+            <div class='col-xs-6'>
+              <label for="dueDate">Due Date:</label>
+              <div class="form-group">
+                <div class='input-group date' id='duedate'>
+                  <input type='text' class="form-control" disabled/>
+                  <span class="input-group-addon">
 <span class="glyphicon glyphicon-calendar"></span>
 </span>
+                </div>
               </div>
             </div>
-          </div>
-          <script type="text/javascript">
-            $(document).ready(function () {
-              $('#duedate').datetimepicker({
-                format: 'DD/MM/YYYY'
+            <script type="text/javascript">
+              $(document).ready(function () {
+                $('#duedate').datetimepicker({
+                  format: 'DD/MM/YYYY'
+                });
               });
-            });
-          </script>
+            </script>
 
-          <div class="form-group col-xs-6">
-            <label for="amount">Amount:</label>
-            <input id="amount" class="form-control form-width" type="number" autocapitalize='off' name="Amount"
-                   placeholder="Enter amount here..." disabled/>
+            <div class="form-group col-xs-6">
+              <label for="amount">Amount:</label>
+              <input id="amount" class="form-control form-width" type="number" autocapitalize='off' name="Amount"
+                     placeholder="Enter amount here..." disabled/>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div><label>Advanced Options:</label>
+      <div><label>Advanced Options:</label>
 
-      <div class="row">
-        <div class="col-xs-12 col-sm-4">
-          <label class="custom-checkbox">
-            <input type="checkbox" class="custom-control-input" disabled>
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Indigenous</span>
-          </label>
+        <div class="row">
+          <div class="col-xs-12 col-sm-4">
+            <label class="custom-checkbox">
+              <input type="checkbox" class="custom-control-input" disabled>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Indigenous</span>
+            </label>
+          </div>
+
+          <div class="col-xs-12 col-sm-4">
+            <label class="custom-checkbox">
+              <input type="checkbox" class="custom-control-input" disabled>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Award Renewable</span>
+            </label>
+          </div>
+
+          <div class="col-xs-12 col-sm-4">
+            <label class="custom-checkbox">
+              <input type="checkbox" class="custom-control-input" disabled>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Application Required</span>
+            </label>
+          </div>
+
         </div>
-
-        <div class="col-xs-12 col-sm-4">
-          <label class="custom-checkbox">
-            <input type="checkbox" class="custom-control-input" disabled>
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Award Renewable</span>
-          </label>
-        </div>
-
-        <div class="col-xs-12 col-sm-4">
-          <label class="custom-checkbox">
-            <input type="checkbox" class="custom-control-input" disabled>
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Application Required</span>
-          </label>
-        </div>
-
       </div>
-    </div>
 
-    <br>
-    <input type="submit" name="submit" class="btn btn-danger">
-  </form>
+      <br>
+      <input type="submit" name="submit" class="btn btn-danger" onclick="loading();">
+    </form>
 
-</div>
-<br>
-
-<!-- Search Results -->
-{% if searchMsg %}
-<div class="container well" id="searchBox">
-  <b><p>{{searchMsg}}</p></b>
-  <b><p>Total awards found: {{awardCount}}</p></b>
-</div>
-{% endif %}
-
-<div class="container" id="searchResultsPage">
-  {% for award in awards %}
-  <div>
-    <h4><b>{{award.sequence}}. <a href="{{award.url}}" target="_blank">{{award.name}}</a></b></h4>
-    <p><b>Description:</b> {{award.description}}</p>
   </div>
   <br>
-  {% endfor %}
+
+  <!-- Search Results -->
+  {% if searchMsg %}
+  <div class="container well" id="searchBox">
+    <b><p>{{searchMsg}}</p></b>
+    <b><p>Total awards found: {{awardCount}}</p></b>
+  </div>
+  {% endif %}
+
+  <div class="container" id="searchResultsPage">
+    {% for award in awards %}
+    <div>
+      <h4><b>{{award.sequence}}. <a href="{{award.url}}" target="_blank">{{award.name}}</a></b></h4>
+      <p><b>Description:</b> {{award.description}}</p>
+    </div>
+    <br>
+    {% endfor %}
+  </div>
 </div>
+
+<script type="text/javascript">
+  function loading() {
+    $("#loading").show();
+    $("#content").hide();
+  }
+</script>
 
 </body>
 
