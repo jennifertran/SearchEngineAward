@@ -2,7 +2,6 @@ selenium==3.5.0
 requests==2.18.4
 urllib3==1.22
 beautifulsoup4==4.6.0
-mechanize==0.3.5
 chardet==3.0.4
 idna==2.6
 pip==9.0.1
