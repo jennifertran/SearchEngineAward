@@ -484,6 +484,7 @@ def extractAwards(currPage, keyword):
                 for currKeyword in keywords:
                     if awardInfo.find(currKeyword.strip()) == -1:
                         isFound = False
+                        break
                 if (isFound == True):
                     counter += 1
                     award.sequence = counter
@@ -500,6 +501,22 @@ def extractAwards(currPage, keyword):
                         award.sequence = counter
                         result.append(award)
                         break
+            return result
+        # if find logical conjunction NOT
+        elif keyword.find("NOT") != -1:
+            keywords = keyword.split("NOT")
+            for award in awards:
+                isFound = True
+                awardInfo = str(award.displayAward())
+                if awardInfo.find(keywords[0].strip()) != -1:
+                    for currKeyword in keywords[1:]: # make sure the keyword after NOT is not included
+                        if awardInfo.find(currKeyword.strip()) != -1:
+                            isFound = False
+                            break
+                    if (isFound == True):
+                        counter += 1
+                        award.sequence = counter
+                        result.append(award)
             return result
         # no logic conjunction is found, only single keyword
         else:
