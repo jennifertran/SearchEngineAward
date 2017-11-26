@@ -517,7 +517,6 @@ def extractAwards(currPage, keyword, amount):
                 awardInfo = str(award.displayAward())
                 if awardInfo.find(keywords[0].strip()) != -1:
                     for currKeyword in keywords[1:]: # make sure the keyword after NOT is not included
-                        print currKeyword
                         if awardInfo.find(currKeyword.strip()) != -1:
                             isFound = False
                             break

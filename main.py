@@ -89,4 +89,4 @@ def index():
 # Kicks the entire app off in our web server
 # only if this file had run
 if __name__ == "__main__":
-    Bower(app.run(debug = True))
+    Bower(app.run)
