@@ -156,16 +156,38 @@
         </div>
       </div>
 
-      <div><label>Advanced Options:</label>
+      <div><label>Advanced Options (Optional):</label>
 
         <div class="row">
-          <div class="col-xs-12 col-sm-4">
-            <label class="custom-checkbox">
-              <input type="checkbox" class="custom-control-input" disabled>
-              <span class="custom-control-indicator"></span>
-              <span class="custom-control-description">Indigenous</span>
-            </label>
+
+          <div class="form-group col-xs-12 col-sm-4">
+            <label for="indigenous">Indigenous:</label>
+            <select class="form-control" id="indigenous">
+              <option value="" selected></option>
+              <option value="yes">Only</option>
+              <option value="no">Exclude</option>
+            </select>
           </div>
+
+          <div class="form-group col-xs-12 col-sm-4">
+            <label for="international">International:</label>
+            <select class="form-control" id="international">
+              <option value="" selected></option>
+              <option value="yes">Only</option>
+              <option value="no">Exclude</option>
+            </select>
+          </div>
+
+          <div class="form-group col-xs-12 col-sm-4">
+            <label for="disabilities">Students with disabilities:</label>
+            <select class="form-control" id="disabilities">
+              <option value="" selected></option>
+              <option value="yes">Only</option>
+              <option value="no">Exclude</option>
+            </select>
+          </div>
+
+
 
           <div class="col-xs-12 col-sm-4">
             <label class="custom-checkbox">
