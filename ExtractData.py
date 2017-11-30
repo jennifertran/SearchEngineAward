@@ -358,9 +358,18 @@ def passResult(faculty, type, keyword, amount, indig, inter, disabil):
                         pass
 
             else:
+                driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
+                if indig and indig!="-1":
+                    Select(driver.find_element_by_xpath("//*[@id='aboriginal']")).select_by_visible_text(indig)
+
+                if inter and inter!="-1":
+                    Select(driver.find_element_by_xpath("//*[@id='international']")).select_by_visible_text(inter)
+
+                if disabil and disabil!="-1":
+                    Select(driver.find_element_by_xpath("//*[@id='disabled']")).select_by_visible_text(disabil)
+
                 if currType == "View all types":
                     for y in typeList:
-                        driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
                         Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(currFaculty)
                         Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text(y)
                         Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
@@ -373,79 +382,44 @@ def passResult(faculty, type, keyword, amount, indig, inter, disabil):
                         except NoSuchElementException:
                             pass
 
-                    # Add "Entrance Bursary"
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
-                    Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
-                    Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(currFaculty)
-                    Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Bursary")
-                    Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
-                    driver.find_element_by_xpath("//*[@id='Search']").click()
-                    result += extractAwards(driver, keyword, amount)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount)
-                    except NoSuchElementException:
-                        pass
-
-                    # Add "Entrance Scholarship"
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
-                    Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
-                    Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(currFaculty)
-                    Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Scholarship")
-                    Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
-                    driver.find_element_by_xpath("//*[@id='Search']").click()
-                    result += extractAwards(driver, keyword, amount)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount)
-                    except NoSuchElementException:
-                        return result
-
-                elif currType == "Entrance Bursary":
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
-                    Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
-                    Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(currFaculty)
-                    Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Bursary")
-                    Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
-                    driver.find_element_by_xpath("//*[@id='Search']").click()
-                    result += extractAwards(driver, keyword, amount)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount)
-                    except NoSuchElementException:
-                        pass
-
-                elif currType == "Entrance Scholarship":
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
-                    Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
-                    Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(currFaculty)
-                    Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Scholarship")
-                    Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
-                    driver.find_element_by_xpath("//*[@id='Search']").click()
-                    result += extractAwards(driver, keyword, amount)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount)
-                    except NoSuchElementException:
-                        pass
-
                 else:
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
                     Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(currFaculty)
-                    Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text(currType)
                     Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
-                    driver.find_element_by_xpath("//*[@id='Search']").click()
-                    result += extractAwards(driver, keyword, amount)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount)
-                    except NoSuchElementException:
-                        pass
+
+                    if currType == "Entrance Bursary":
+                        Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
+                        Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Bursary")
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        result += extractAwards(driver, keyword, amount)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount)
+                        except NoSuchElementException:
+                            pass
+
+                    elif currType == "Entrance Scholarship":
+                        Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
+                        Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Scholarship")
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        result += extractAwards(driver, keyword, amount)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount)
+                        except NoSuchElementException:
+                            pass
+
+                    else:
+                        Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text(currType)
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        result += extractAwards(driver, keyword, amount)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount)
+                        except NoSuchElementException:
+                            pass
 
     return result
 
