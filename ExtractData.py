@@ -426,6 +426,7 @@ def passResult(faculty, type, keyword, amount, indig, inter, disabil):
 
 def extractAwards(currPage, keyword, amount):
     soup = BeautifulSoup(currPage.page_source, "html.parser")
+    driver2 = webdriver.PhantomJS()
 
     awards = []
     results = []  # Contains keyword related results
@@ -434,26 +435,29 @@ def extractAwards(currPage, keyword, amount):
 
     type = soup.find(id="award").text.split()
 
-    for award in soup.find_all("div", {"id": "awardInfo"}):
-        url = "https://wwwapps.cc.umanitoba.ca:8443" + award.find('a').get('href')
-        name = award.find('a').text
-        spanList = award.find_all(id="rightTag")
+    for entry in soup.find_all("div", {"id": "awardInfo"}):
+        url = "https://wwwapps.cc.umanitoba.ca:8443" + entry.find('a').get('href')
+        name = entry.find('a').text
+        spanList = entry.find_all(id="rightTag")
         if keyword == "" and amount == "":
             counter += 1
         award = Award(url, spanList[0].text, name, type[3], spanList[1].text, spanList[2].text, None, 0, None,
-                      award.find(id="awardDesc").text.strip()[:-1][1:], counter)
+                      entry.find(id="awardDesc").text.strip()[:-1][1:], counter)
+
         if amount:
-            currPage.get(url)
-            soup = BeautifulSoup(currPage.page_source, "html.parser")
-            div = soup.find_all('div', class_="rowDisp")
+            driver2.get(url)
+            soup2 = BeautifulSoup(driver2.page_source, "html.parser")
+            div = soup2.find_all('div', class_="rowDisp")
             price = div[3].text.strip()[14:][:12].strip()
-            if int(price) >= int(amount):
-                counter += 1
-                award.sequence = counter
-                awards.append(award)
+            try: # Make sure get the numerical value not string
+                if int(price) >= int(amount):
+                    counter += 1
+                    award.sequence = counter
+                    awards.append(award)
+            except:
+                pass
         else:
             awards.append(award)
-
 
     if keyword:
         # try to split string based on logical conjunction
