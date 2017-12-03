@@ -37,6 +37,8 @@ def index():
         currIndig = request.form['indigenous']
         currInter = request.form['international']
         currDisa = request.form['disabilities']
+        currAppli = request.form.get('Application')
+        currRenew =  request.form.get('Renewable')
 
         # Checks if the array is not empty
         if currFaculty:
@@ -80,7 +82,7 @@ def index():
             error += errorMsg[:-2]
 
         if error is None:
-            awards = ExtractData.passResult(currFaculty, currType, currKeyword, currAmount, currIndig, currInter, currDisa)
+            awards = ExtractData.passResult(currFaculty, currType, currKeyword, currAmount, currIndig, currInter, currDisa, currAppli, currRenew)
             totalAwards = ExtractData.getTotal()
             return template.render(awards=awards, searchMsg=resultMsg, awardCount=totalAwards)
         else:
@@ -92,4 +94,4 @@ def index():
 # Kicks the entire app off in our web server
 # only if this file had run
 if __name__ == "__main__":
-    Bower(app.run)
+    Bower(app.run(debug=True))
