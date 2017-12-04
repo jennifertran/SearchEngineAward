@@ -272,8 +272,20 @@ def extractAwards(currPage, keyword, amount, renew):
             for award in awards:
                 isFound = True
                 awardInfo = str(award.displayAward())
-                if awardInfo.find(keywords[0].strip()) != -1:
-                    for currKeyword in keywords[1:]: # make sure the keyword after NOT is not included
+                firstKeyword = keywords[0]
+                # There is a keyword before logical conjunction NOT
+                if firstKeyword != "":
+                    if awardInfo.find(firstKeyword.strip()) != -1:
+                        for currKeyword in keywords[1:]:  # make sure the keyword after NOT is not included
+                            if awardInfo.find(currKeyword.strip()) != -1:
+                                isFound = False
+                                break
+                        if (isFound == True):
+                            counter += 1
+                            award.sequence = counter
+                            results.append(award)
+                else:
+                    for currKeyword in keywords[1:]:  # make sure the keyword after NOT is not included
                         if awardInfo.find(currKeyword.strip()) != -1:
                             isFound = False
                             break
@@ -281,6 +293,7 @@ def extractAwards(currPage, keyword, amount, renew):
                         counter += 1
                         award.sequence = counter
                         results.append(award)
+
         # no logic conjunction is found, only single keyword
         else:
             for award in awards:
