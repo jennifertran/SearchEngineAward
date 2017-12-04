@@ -189,7 +189,7 @@ def extractAwards(currPage, keyword, amount, renew):
         url = "https://wwwapps.cc.umanitoba.ca:8443" + entry.find('a').get('href')
         name = entry.find('a').text
         spanList = entry.find_all(id="rightTag")
-        if keyword == "" and amount == "":
+        if keyword == "" and amount == "" and renew!="on":
             counter += 1
         award = Award(url, spanList[0].text, name, type[3], spanList[1].text, spanList[2].text, None, 0, None,
                       entry.find(id="awardDesc").text.strip()[:-1][1:], counter)
@@ -203,7 +203,8 @@ def extractAwards(currPage, keyword, amount, renew):
             try: # Make sure get the numerical value not string
                 renewable = div[2].text.strip()[38:].strip()
                 if int(price) >= int(amount) and renewable=="Yes":
-                    counter += 1
+                    if keyword == "":
+                        counter += 1
                     award.sequence = counter
                     awards.append(award)
             except:
@@ -216,7 +217,8 @@ def extractAwards(currPage, keyword, amount, renew):
             price = div[3].text.strip()[14:][:12].strip()
             try:  # Make sure get the numerical value not string
                 if int(price) >= int(amount):
-                    counter += 1
+                    if keyword == "":
+                        counter += 1
                     award.sequence = counter
                     awards.append(award)
             except:
@@ -229,7 +231,8 @@ def extractAwards(currPage, keyword, amount, renew):
             try: # Make sure get the numerical value not string
                 renewable = div[2].text.strip()
                 if renewable=="Yes":
-                    counter += 1
+                    if keyword == "":
+                        counter += 1
                     award.sequence = counter
                     awards.append(award)
             except:
