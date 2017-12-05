@@ -21,90 +21,11 @@ def passResult(faculty, type, keyword, amount, indig, inter, disabil, appli, ren
         for currType in type:
             # Max Rady College of Medicine is an exception, it has sub-branches
             if currFaculty == "Max Rady College of Medicine":
-                if currType == "View all types":
-                    for type in typeSyn:
-                        driver.get(
-                            "https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/showSubFacAwards/-FSS%2C-FSS2?Search=Search&level=-1&_requireApp=&program=-1&aboriginal=&international=&awardName=&type="+type+"&disabled=&major=-1&awardsPerPage=10&faculty=05")
-                        result += extractAwards(driver, keyword, amount, renew)  # result on the first page
-                        try:
-                            while driver.find_element_by_link_text("Next"):
-                                driver.find_element_by_link_text("Next").click()
-                                result += extractAwards(driver, keyword, amount, renew)
-                        except NoSuchElementException:
-                            pass
 
-                        driver.get(
-                            "https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/showSubFacAwards/-00%2C-S?Search=Search&level=-1&_requireApp=&program=-1&aboriginal=&international=&awardName=&type="+type+"&disabled=&major=-1&awardsPerPage=10&faculty=05")
-                        result += extractAwards(driver, keyword, amount, renew)  # result on the first page
-                        try:
-                            while driver.find_element_by_link_text("Next"):
-                                driver.find_element_by_link_text("Next").click()
-                                result += extractAwards(driver, keyword, amount, renew)
-                        except NoSuchElementException:
-                            pass
-
-                elif currType == "Entrance Bursary":
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/showSubFacAwards/-FSS%2C-FSS2?Search=Search&level=ENTRANCE&_requireApp=&program=-1&aboriginal=&international=&awardName=&type=BURS&awardsPerPage=10&disabled=&faculty=05&major=-1")
-                    result += extractAwards(driver, keyword, amount, renew)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount, renew)
-                    except NoSuchElementException:
-                        pass
-
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/showSubFacAwards/-00%2C-S?Search=Search&level=ENTRANCE&_requireApp=&program=-1&aboriginal=&international=&awardName=&type=BURS&awardsPerPage=10&disabled=&faculty=05&major=-1")
-                    result += extractAwards(driver, keyword, amount, renew)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount, renew)
-                    except NoSuchElementException:
-                        pass
-
-                elif currType == "Entrance Scholarship":
-
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/showSubFacAwards/-FSS%2C-FSS2?Search=Search&level=ENTRANCE&_requireApp=&program=-1&aboriginal=&international=&awardName=&type=SCHOL&disabled=&major=-1&awardsPerPage=10&faculty=05")
-                    result += extractAwards(driver, keyword, amount, renew)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount, renew)
-                    except NoSuchElementException:
-                        pass
-
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/showSubFacAwards/-00%2C-S?Search=Search&level=ENTRANCE&_requireApp=&program=-1&aboriginal=&international=&awardName=&type=SCHOL&disabled=&major=-1&awardsPerPage=10&faculty=05")
-                    result += extractAwards(driver, keyword, amount, renew)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount, renew)
-                    except NoSuchElementException:
-                        pass
-
-                else:
-                    index = typeList.index(currType)
-                    currentType = typeSyn[index]
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/showSubFacAwards/-FSS%2C-FSS2?Search=Search&level=-1&_requireApp=&program=-1&aboriginal=&international=&awardName=&type="+currentType+"&disabled=&major=-1&awardsPerPage=10&faculty=05")
-                    result += extractAwards(driver, keyword, amount, renew)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount, renew)
-                    except NoSuchElementException:
-                        pass
-
-                    driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/showSubFacAwards/-00%2C-S?Search=Search&level=-1&_requireApp=&program=-1&aboriginal=&international=&awardName=&type="+currentType+"&disabled=&major=-1&awardsPerPage=10&faculty=05")
-                    result += extractAwards(driver, keyword, amount, renew)  # result on the first page
-                    try:
-                        while driver.find_element_by_link_text("Next"):
-                            driver.find_element_by_link_text("Next").click()
-                            result += extractAwards(driver, keyword, amount, renew)
-                    except NoSuchElementException:
-                        pass
-
-            else:
                 driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
+                Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(currFaculty)
+                Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
+
                 if indig and indig!="-1":
                     Select(driver.find_element_by_xpath("//*[@id='aboriginal']")).select_by_visible_text(indig)
 
@@ -119,9 +40,116 @@ def passResult(faculty, type, keyword, amount, indig, inter, disabil, appli, ren
 
                 if currType == "View all types":
                     for y in typeList:
-                        Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(currFaculty)
                         Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text(y)
-                        Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        driver.find_element_by_link_text("Family Social Sciences").click()
+                        result += extractAwards(driver, keyword, amount, renew)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount, renew)
+                        except NoSuchElementException:
+                            pass
+
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        driver.find_element_by_link_text("Undergraduate Medical Education").click()
+                        result += extractAwards(driver, keyword, amount, renew)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount, renew)
+                        except NoSuchElementException:
+                            pass
+
+                else:
+                    if currType == "Entrance Bursary":
+                        Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
+                        Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Bursary")
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        driver.find_element_by_link_text("Family Social Sciences").click()
+                        result += extractAwards(driver, keyword, amount, renew)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount, renew)
+                        except NoSuchElementException:
+                            pass
+
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        driver.find_element_by_link_text("Undergraduate Medical Education").click()
+                        result += extractAwards(driver, keyword, amount, renew)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount, renew)
+                        except NoSuchElementException:
+                            pass
+
+                    elif currType == "Entrance Scholarship":
+                        Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
+                        Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text("Scholarship")
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        driver.find_element_by_link_text("Family Social Sciences").click()
+                        result += extractAwards(driver, keyword, amount, renew)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount, renew)
+                        except NoSuchElementException:
+                            pass
+
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        driver.find_element_by_link_text("Undergraduate Medical Education").click()
+                        result += extractAwards(driver, keyword, amount, renew)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount, renew)
+                        except NoSuchElementException:
+                            pass
+
+                    else:
+                        Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text(currType)
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        driver.find_element_by_link_text("Family Social Sciences").click()
+                        result += extractAwards(driver, keyword, amount, renew)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount, renew)
+                        except NoSuchElementException:
+                            pass
+
+                        driver.find_element_by_xpath("//*[@id='Search']").click()
+                        driver.find_element_by_link_text("Undergraduate Medical Education").click()
+                        result += extractAwards(driver, keyword, amount, renew)  # result on the first page
+                        try:
+                            while driver.find_element_by_link_text("Next"):
+                                driver.find_element_by_link_text("Next").click()
+                                result += extractAwards(driver, keyword, amount, renew)
+                        except NoSuchElementException:
+                            pass
+
+            else:
+                driver.get("https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/searchForm/awardSearch")
+                Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(currFaculty)
+                Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
+
+                if indig and indig!="-1":
+                    Select(driver.find_element_by_xpath("//*[@id='aboriginal']")).select_by_visible_text(indig)
+
+                if inter and inter!="-1":
+                    Select(driver.find_element_by_xpath("//*[@id='international']")).select_by_visible_text(inter)
+
+                if disabil and disabil!="-1":
+                    Select(driver.find_element_by_xpath("//*[@id='disabled']")).select_by_visible_text(disabil)
+
+                if appli and appli=="on":
+                    driver.find_element_by_xpath("//*[@id='requireApp']").click()
+
+                if currType == "View all types":
+                    for y in typeList:
+                        Select(driver.find_element_by_xpath("//*[@id='type']")).select_by_visible_text(y)
                         driver.find_element_by_xpath("//*[@id='Search']").click()
                         result += extractAwards(driver, keyword, amount, renew)  # result on the first page
                         try:
@@ -132,8 +160,6 @@ def passResult(faculty, type, keyword, amount, indig, inter, disabil, appli, ren
                             pass
 
                 else:
-                    Select(driver.find_element_by_xpath("//*[@id='faculty']")).select_by_visible_text(currFaculty)
-                    Select(driver.find_element_by_xpath("//*[@id='awardsPerPage']")).select_by_visible_text("30")
 
                     if currType == "Entrance Bursary":
                         Select(driver.find_element_by_xpath("//*[@id='level']")).select_by_visible_text("Entrance")
@@ -184,6 +210,7 @@ def extractAwards(currPage, keyword, amount, renew):
     global counter
 
     type = soup.find(id="award").text.split()
+
 
     for entry in soup.find_all("div", {"id": "awardInfo"}):
         url = "https://wwwapps.cc.umanitoba.ca:8443" + entry.find('a').get('href')
