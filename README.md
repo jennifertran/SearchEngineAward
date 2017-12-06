@@ -1,18 +1,8 @@
 # Search Engine Award
 
-Return's all the relevant awards from the University of Manitoba by keyword.
+An improved version of the University of Manitoba's Awards Database [https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/]
 
 Created by Zhikan Xu, and Jennifer Tran
-
-# Command Guides
-
-## Making a commit
-
-~~~~
-git add .
-git commit -m "Message"
-git push -u origin master
-~~~~
 
 # Copyright
 

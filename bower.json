@@ -2,7 +2,8 @@
   "name": "searchengineaward",
   "homepage": "https://github.com/jennifertran/ScienceSearchAward",
   "authors": [
-    "Jennifer Tran <Jennifer.tran101@gmail.com>"
+    "Jennifer Tran <Jennifer.tran101@gmail.com>",
+    "Zhikan Xu <jasonxu059@gmail.com>"
   ],
   "description": "bower settings",
   "main": "main.py",
