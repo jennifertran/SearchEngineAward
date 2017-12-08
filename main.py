@@ -24,6 +24,8 @@ def index():
   allType = ""
   resultMsg = "You have selected: "
   totalAwards = 0
+  x = ""
+  y = ""
   containsViewAllFac = None
   containsViewAllType = None
 
@@ -53,9 +55,11 @@ def index():
     else:
       errorMsg += "Please choose faculty, "
 
+    # Only evaluate view all faculties in back end
     if containsViewAllFac:
       currFaculty = ["View all faculties"]
 
+    # Check for Type
     if currType:
       for y in currType:
         allType += y + ", "
@@ -74,6 +78,9 @@ def index():
 
     if currKeyword != "":
       resultMsg += ", " + currKeyword
+
+    if currAmount != "":
+      resultMsg += ", $" + currAmount
 
     if errorMsg != "":
       error = ""
@@ -95,4 +102,5 @@ def index():
 # Kicks the entire app off in our web server
 # only if this file had run
 if __name__ == "__main__":
-  Bower(app.run(debug=True))
+  Bower(app.run())
+  #Bower(app.run(debug=True))
