@@ -2,7 +2,7 @@
 
 The main goal of the project was to improve the existing University of Manitoba’s Award form by implementing a search engine to it as the one used by the University was not effective enough.
 
-<img src="https://raw.githubusercontent.com/jennifertran/SearchEngineAward/master/static/screenshot.png" width="600px" height="300px">
+<img src="https://raw.githubusercontent.com/jennifertran/SearchEngineAward/master/static/screenshot.png" width="700px" height="400px">
 
 **Previous version:** https://wwwapps.cc.umanitoba.ca:8443/searchableAwards/ <br>
 **New proposed version of the application live:** https://searchengineaward.herokuapp.com/
